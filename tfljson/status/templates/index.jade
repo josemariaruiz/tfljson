@@ -1,1 +1,15 @@
-h1 Hello world
+- extends 'base.jade'
+
+block content
+    .col-ms-12
+        h1 TFL
+        table 
+            tbody
+                for line, status in lines
+                    tr
+                        td {{line}}
+                        td
+                            if status == "Good Service"
+                                span.label.label-success {{status}}
+                            else
+                                span.label.label-danger {{status}}

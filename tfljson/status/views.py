@@ -67,7 +67,20 @@ class Status(object):
 
 
 def index(request):
-    return render(request, 'index.jade')
+    current_status = Status()
+
+    # Get a list of tube lines
+    lines = current_status.list_lines()
+
+    # Loop through the lines and print the status of each one
+    data = {}
+
+    for line in lines:
+        data[line] = current_status.get_status(line).description
+
+    return render(request,
+                  'index.jade',
+                  {'lines': data.items()})
 
 
 def status(request):
